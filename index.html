@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --primary: #8B0000;
@@ -51,6 +52,38 @@
             padding: 0 30px;
         }
 
+        /* Language switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(0,0,0,0.7);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+            font-weight: 500;
+        }
+
+        .lang-btn:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
         /* Header */
         header {
             position: fixed;
@@ -74,6 +107,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -83,6 +117,7 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             letter-spacing: 1px;
             position: relative;
+            transition: all 0.3s;
         }
 
         .logo::after {
@@ -99,6 +134,17 @@
 
         .logo:hover::after {
             transform: scaleX(1);
+        }
+
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 1001;
         }
 
         nav ul {
@@ -996,14 +1042,38 @@
                 text-align: center;
             }
 
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--dark-transparent);
+                backdrop-filter: blur(10px);
+                padding: 80px 30px;
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+
+            nav.active {
+                right: 0;
+            }
+
             nav ul {
-                margin-top: 20px;
-                justify-content: center;
-                flex-wrap: wrap;
+                flex-direction: column;
+                margin-top: 40px;
             }
 
             nav ul li {
-                margin: 0 15px 10px;
+                margin: 0 0 20px 0;
             }
 
             .hero h1 {
@@ -1032,6 +1102,10 @@
                 padding: 5px 30px;
                 font-size: 0.8rem;
             }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1045,6 +1119,17 @@
 
             .section-title {
                 font-size: 2rem;
+                margin-bottom: 50px;
+            }
+
+            .section-title::after {
+                width: 100px;
+                bottom: -15px;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+                margin-bottom: 40px;
             }
 
             .features-grid {
@@ -1054,14 +1139,33 @@
             .investment-plans {
                 grid-template-columns: 1fr;
             }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lang-switcher {
+                top: 15px;
+                right: 15px;
+            }
+
+            .lang-btn {
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Language switcher -->
+
     <header id="header">
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">Пугачёвщина</a>
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <nav>
                     <ul>
                         <li><a href="#about">Проект</a></li>
@@ -1400,25 +1504,25 @@
                 <div class="document-card">
                     <h3>Презентация проекта</h3>
                     <p>Полная презентация игрового продукта с визуальными материалами и концепт-артами.</p>
-                    <a href="Презентация игрового продукта ПУГАЧЁВЩИНА.pptx" class="documents-btn">Скачать</a>
+                    <a href="https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs" class="documents-btn">Скачать</a>
                 </div>
 
                 <div class="document-card">
                     <h3>Сюжетный план</h3>
                     <p>Подробное описание сюжетных линий, персонажей и ветвления повествования.</p>
-                    <a href="СЮЖЕТНЫЙ ПЛАН ПУГАЧЁВЩИНА КВ.docx" class="documents-btn">Скачать</a>
+                    <a href="https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs" class="documents-btn">Скачать</a>
                 </div>
 
                 <div class="document-card">
                     <h3>Техническое описание</h3>
                     <p>Детализированное описание игрового процесса, механик и технических решений.</p>
-                    <a href="Техническое описание игрового процесса ПУГАЧЁВЩИНА КВ.docx" class="documents-btn">Скачать</a>
+                    <a href="https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs" class="documents-btn">Скачать</a>
                 </div>
 
                 <div class="document-card">
                     <h3>Финансовый план</h3>
                     <p>Полный бюджет разработки, расчет окупаемости и маркетинговые стратегии.</p>
-                    <a href="Финансовый план разработки игры ПУГАЧЁВЩИНА КВ.docx" class="documents-btn">Скачать</a>
+                    <a href="https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs" class="documents-btn">Скачать</a>
                 </div>
             </div>
         </div>
@@ -1510,10 +1614,10 @@
                 <div class="footer-column">
                     <h3>Документы проекта</h3>
                     <ul>
-                        <li><a href="Презентация игрового продукта ПУГАЧЁВЩИНА.pptx">Презентация проекта</a></li>
-                        <li><a href="СЮЖЕТНЫЙ ПЛАН ПУГАЧЁВЩИНА КВ.docx">Сюжетный план</a></li>
-                        <li><a href="Техническое описание игрового процесса ПУГАЧЁВЩИНА КВ.docx">Техническое описание</a></li>
-                        <li><a href="Финансовый план разработки игры ПУГАЧЁВЩИНА КВ.docx">Финансовый план</a></li>
+                        <li><a href="https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs">Презентация проекта</a></li>
+                        <li><a href="https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs">Сюжетный план</a></li>
+                        <li><a href="https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs">Техническое описание</a></li>
+                        <li><a href="https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs">Финансовый план</a></li>
                     </ul>
                 </div>
             </div>
@@ -1559,6 +1663,24 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.innerHTML = nav.classList.contains('active') ?
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
         // Плавная прокрутка
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1628,6 +1750,31 @@
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
+            }
+        });
+
+        // Language switcher
+        const langBtns = document.querySelectorAll('.lang-btn');
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const lang = btn.getAttribute('data-lang');
+                // Здесь можно добавить логику перевода страницы
+                // В реальном проекте это будет более сложная система
+                console.log('Switched to language:', lang);
+            });
+        });
+
+        // Update all download links to point to GitHub
+        document.querySelectorAll('a.documents-btn, .footer-column a').forEach(link => {
+            if (link.textContent.toLowerCase().includes('скачать') ||
+                link.getAttribute('href').endsWith('.pptx') ||
+                link.getAttribute('href').endsWith('.docx')) {
+                link.href = 'https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs';
+                link.target = '_blank';
             }
         });
     </script>
