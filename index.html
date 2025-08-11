@@ -1753,30 +1753,7 @@
             }
         });
 
-        // Language switcher
-        const langBtns = document.querySelectorAll('.lang-btn');
-
-        langBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                langBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-
-                const lang = btn.getAttribute('data-lang');
-                // Здесь можно добавить логику перевода страницы
-                // В реальном проекте это будет более сложная система
-                console.log('Switched to language:', lang);
-            });
-        });
-
-        // Update all download links to point to GitHub
-        document.querySelectorAll('a.documents-btn, .footer-column a').forEach(link => {
-            if (link.textContent.toLowerCase().includes('скачать') ||
-                link.getAttribute('href').endsWith('.pptx') ||
-                link.getAttribute('href').endsWith('.docx')) {
-                link.href = 'https://github.com/waratecs123/Pugachev-Bloody-Uprising/tree/main/docs';
-                link.target = '_blank';
-            }
-        });
     </script>
 </body>
 </html>
+
